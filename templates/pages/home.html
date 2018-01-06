@@ -1,0 +1,92 @@
+---
+carousel: true
+products:
+  featured:
+    limit: {{theme_settings.home-featured-products}}
+  new:
+    limit: {{theme_settings.home-new-products}}
+  top_sellers:
+    limit: {{theme_settings.home-new-products}}
+blog:
+  recent_posts:
+    limit: 2
+    summary: {{theme_settings.blog-summary-length}}
+---
+
+{{#partial "page"}}
+
+  {{#if carousel.slides.length}}
+    {{> components/carousel }}
+  {{/if}}
+
+  {{{snippet 'home_content'}}}
+
+  {{#if products.featured}}
+    <section class="products-featured section">
+      <h3 class="section-title">{{lang 'home.featured_products'}}</h3>
+      <div class="container">
+        {{#each products.featured}}
+          {{> components/products/product-grid-item
+            as_low_as=../theme_settings.price_as_low_as
+            quick_shop=../theme_settings.quick_shop
+            default_image=../theme_settings.default-product-image
+          }}
+        {{/each}}
+      </div>
+    </section>
+  {{/if}}
+
+  {{#if theme_settings.home-show-top-sellers}}
+    {{#if products.top_sellers}}
+      <section class="products-best section">
+        <h3 class="section-title">
+          {{lang 'home.best_sellers'}}
+        </h3>
+        <div class="container">
+          {{#each products.top_sellers}}
+            {{> components/products/product-grid-item
+              as_low_as=../theme_settings.price_as_low_as
+              quick_shop=../theme_settings.quick_shop
+              default_image=../theme_settings.default-product-image
+            }}
+          {{/each}}
+        </div>
+      </section>
+    {{/if}}
+  {{else}}
+    {{#if products.new}}
+      <section class="products-new section">
+        <h3 class="section-title">
+          {{lang 'home.new_products'}}
+        </h3>
+        <div class="container">
+          {{#each products.new}}
+            {{> components/products/product-grid-item
+              as_low_as=../theme_settings.price_as_low_as
+              quick_shop=../theme_settings.quick_shop
+              default_image=../theme_settings.default-product-image
+            }}
+          {{/each}}
+        </div>
+      </section>
+    {{/if}}
+  {{/if}}
+
+  {{#if theme_settings.home-show-blog}}
+    <section class="blog-latest-posts section">
+      <div class="container">
+        <h3 class="section-title">{{blog.name}}</h3>
+        <div>
+          {{#each blog.recent_posts}}
+            {{> components/blog/blog-post-summary
+              summary_length=../theme_settings.blog-summary-length
+            }}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+  {{/if}}
+
+{{/partial}}
+
+{{> layout/base}}

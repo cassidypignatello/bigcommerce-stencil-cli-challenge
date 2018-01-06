@@ -1,0 +1,1 @@
+{"components/common/modal-close":"<a href=\"#\" class=\"modal-close\" aria-label=\"{{lang 'cart.modal_close'}}\">\n  <span aria-hidden=\"true\">\n    <svg class=\"icon icon-close\"><use xlink:href=\"#icon-close\" /></svg>\n  </span>\n</a>\n"}

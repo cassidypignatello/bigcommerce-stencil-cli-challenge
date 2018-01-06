@@ -1,0 +1,17 @@
+{{#if shop_by_price}}
+  <div class="sidebar-block shop-by-price facet-list" data-facet-filter>
+    {{> components/common/facet-toggle title=(lang 'category.shop_by_price')}}
+    <ul class="facet-list-items is-open" data-facet-filter-wrapper>
+      {{#each shop_by_price}}
+        <li class="facet-item">
+          <a class="{{#if selected }}is-active{{/if}}" href="{{url}}" alt="{{low.formatted}} - {{high.formatted}}">{{low.formatted}} - {{high.formatted}}</a>
+        </li>
+      {{/each}}
+    </ul>
+    {{#any shop_by_price selected=true}}
+      <a href="{{category_url}}" class="link facet-remove">
+        {{lang 'category.reset'}}
+      </a>
+    {{/any}}
+  </div>
+{{/if}}

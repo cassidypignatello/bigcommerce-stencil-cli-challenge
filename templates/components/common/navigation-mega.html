@@ -1,0 +1,28 @@
+{{!
+  @param nav_items
+         > either "pages" or "categories", passed from parent template
+}}
+
+{{#each nav_items}}
+  <li class="parent {{#if children}}has-children{{/if}}">
+    <a class="{{#if image}}has-image{{/if}}" href="{{url}}">{{name}}</a>
+    {{#unless ../theme_settings.meganav-show-top-level-only}}
+      {{#if children}}
+        <ul class="children">
+          {{#each children}}
+            <li>
+              <a class="{{#if image}}has-image{{/if}}" href="{{url}}">{{name}}</a>
+              {{#if children}}
+                <ul>
+                  {{#each children}}
+                    <li><a href="{{url}}">{{name}}</a></li>
+                  {{/each}}
+                </ul>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    {{/unless}}
+  </li>
+{{/each}}

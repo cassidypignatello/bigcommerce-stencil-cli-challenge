@@ -1,0 +1,14 @@
+<div class="newsletter-signup">
+  <form class="form subscription-form" action="{{urls.subscribe.action}}" method="post" data-validated-form>
+    <input type="hidden" name="action" value="subscribe">
+    <input type="hidden" name="nl_first_name" value="bc">
+    <input type="hidden" name="check" value="1">
+    <div class="form-field form-inline">
+      <label class="sr-only" for="nl_email">{{lang 'newsletter.email_placeholder'}}</label>
+      <input class="form-input form-input-short" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}" required>
+    </div>
+    <button class="submit" type="submit">
+      <svg class="icon icon-arrow-right"><use xlink:href="#icon-arrow-right" /></svg>
+    </button>
+  </form>
+</div>

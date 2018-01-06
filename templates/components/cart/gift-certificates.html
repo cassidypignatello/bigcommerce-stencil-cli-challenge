@@ -1,0 +1,31 @@
+<div class="cart-totals-item gift-certificates">
+  {{inject 'giftCertificateInputEmpty' (lang 'cart.gift_certificates.error')}}
+
+  <div data-gift-certificates>
+    <span class="cart-total-label">{{lang 'cart.gift_certificates.gift_certificate'}}:</span>
+
+    <span class="link" data-gift-certificate-toggle>{{lang 'cart.gift_certificates.add_code'}}</span>
+
+    <div class="modal-content-wrap" id="certificate-modal">
+      {{> components/common/modal-close}}
+      <header class="modal-header">
+        <h2 class="title">{{lang 'cart.gift_certificates.title'}}</h2>
+        <p class="subtitle">{{lang 'cart.gift_certificates.subtitle'}}</p>
+      </header>
+      <form class="form form-gift-certificate" method="post" action="{{urls.cart}}" data-gift-certificate-form>
+        <label class="sr-only form-label" for="couponcode">{{lang 'cart.gift_certificates.enter_code'}}</label>
+        <div class="input-group">
+          <div class="form-field input-group-item">
+            <input class="form-input" id="couponcode" type="text" name="certcode" value="" placeholder="{{lang 'cart.gift_certificates.enter_code'}}" data-gift-certificate-input>
+          </div>
+          <div class="form-field input-group-item">
+            <button class="button button-tertiary button-progress spinner" type="submit">
+              <span class="button-text">{{lang 'cart.gift_certificates.submit'}}<span class="button-text">
+            </button>
+          </div>
+        </div>
+        <input type="hidden" name="action" value="applycoupon">
+      </form>
+    </div>
+  </div>
+</div>

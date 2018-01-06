@@ -1,0 +1,37 @@
+---
+brands: true
+blog:
+  posts:
+    limit: {{theme_settings.blog-posts-per-page}}
+    pages: {{theme_settings.blog-number-pages}}
+    summary: {{theme_settings.blog-summary-length}}
+---
+
+{{#partial "page"}}
+
+  <header class="page-header">
+    <h1 class="section-title">
+      {{blog.name}}
+    </h1>
+  </header>
+
+  <div class="container blog-post-index">
+    <section class="blog-items-list" itemscope itemtype="http://schema.org/Blog">
+      {{#each blog.posts}}
+        {{> components/blog/blog-post-summary
+          share_buttons=../settings.add_this
+          summary_length=../theme_settings.blog-summary-length
+        }}
+      {{/each}}
+    </section>
+
+    {{#if pagination.blog.links.length}}
+      <footer class="pagination-wrapper">
+        {{> components/common/pagination pagination.blog}}
+      </footer>
+    {{/if}}
+  </div>
+
+{{/partial}}
+
+{{> layout/base}}

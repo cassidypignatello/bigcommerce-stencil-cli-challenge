@@ -1,0 +1,13 @@
+/*! Theme: Merchant v1.15.0 */
+.header {
+  background-color: stencilColor("color-topbar-background");
+}
+
+.header-logo {
+  padding: 10px 0;
+  text-align: center;
+
+  img {
+    max-height: 3.75rem;
+  }
+}

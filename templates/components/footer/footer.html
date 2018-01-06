@@ -1,0 +1,106 @@
+{{#if banners.bottom}}
+  <div class="banners banners-bottom">
+    {{#each banners.bottom}}
+      <div class="banner rte">
+        {{{this}}}
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-col footer-info">
+      <h4 class="footer-title site-branding {{#if settings.store_logo.image}}has-logo{{/if}}">
+        {{> components/common/site-branding}}
+      </h4>
+      {{#if theme_settings.footer-show-address }}
+        <p>{{nl2br settings.address}}</p>
+        <p><a class="site-phone-number" href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a></p>
+      {{/if}}
+    </div>
+    <div class="footer-col footer-nav brands">
+      <h4 class="footer-title">{{lang 'footer.page_nav'}}</h4>
+      {{> components/common/navigation-multi-level nav_items=pages}}
+    </div>
+    <div class="footer-col footer-nav categories">
+      {{#if theme_settings.footer-show-categories}}
+        <h4 class="footer-title">{{lang 'footer.category_nav'}}</h4>
+        {{> components/common/navigation-top-level nav_items=categories}}
+      {{else}}
+        {{> components/footer/brand-navigation}}
+      {{/if}}
+    </div>
+    <div class="footer-col footer-subscribe">
+      {{#if social_media.length}}
+        <div class="footer-social">
+          <h4 class="footer-title">{{lang 'footer.social_title'}}</h4>
+          {{> components/common/social-media-links links=social_media}}
+        </div>
+      {{/if}}
+
+      {{#if settings.show_newsletter_box}}
+        <div class="footer-newsletter">
+          <h4 class="footer-title">{{lang 'footer.subscribe'}}</h4>
+          {{> components/common/newsletter-signup}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="bottom-bar theme-credits">
+    <div class="container">
+      <div class="footer-payment-icons {{#if theme_settings.theme-credits}}align-right{{/if}}">
+        <ul class="footer-payment-icons-list">
+          {{#if theme_settings.payment_visa}}
+            <li>{{> svg/visa}}</li>
+          {{/if}}
+
+          {{#if theme_settings.payment_mastercard}}
+            <li>{{> svg/mastercard}}</li>
+          {{/if}}
+
+          {{#if theme_settings.payment_american_express}}
+            <li>{{> svg/amex}}</li>
+          {{/if}}
+
+          {{#if theme_settings.payment_discover}}
+            <li>{{> svg/discover}}</li>
+          {{/if}}
+
+          {{#if theme_settings.payment_paypal}}
+            <li>{{> svg/paypal}}</li>
+          {{/if}}
+
+          {{#if theme_settings.payment_apple_pay}}
+            <li>{{> svg/apple}}</li>
+          {{/if}}
+        </ul>
+      </div>
+
+      {{#any theme_settings.store-copyright theme_settings.theme-credits}}
+        <p class="credit-text">
+          {{#if theme_settings.theme-credits}}
+            <span class="footer-credits">
+              {{{lang 'footer.credits'
+                theme_name='Merchant'
+                theme_author='<a href="http://pixelunion.net" target="_blank">Pixel Union</a>'
+                theme_platform='<a href="http://bigcommerce.com" target="_blank" rel="nofollow">Bigcommerce</a>'
+              }}}
+            </span>
+          {{/if}}
+
+          {{#all theme_settings.store-copyright theme_settings.theme-credits}} | {{/all}}
+
+          {{#if theme_settings.store-copyright}}
+            <span class="footer-copyright">&copy; <script>document.write(new Date().getFullYear())</script> {{settings.store_name}}</span>
+          {{/if}}
+        </p>
+      {{/any}}
+
+      {{#if theme_settings.sitemap}}
+        <p class="sitemap-text {{#unless theme_settings.theme-credits}}align-center{{/unless}}"><a href="{{urls.sitemap}}">{{lang 'sitemap.title'}}</a></p>
+      {{/if}}
+    </div>
+  </div>
+</footer>

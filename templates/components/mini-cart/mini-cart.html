@@ -1,0 +1,12 @@
+<button class="top-bar-button button-cart-toggle dropdown-toggle">
+  <svg class="icon icon-cart"><use xlink:href="#icon-cart" /></svg>
+  <span class="icon-cart-count {{#if cart.quantity '>' 0}}show{{/if}}"><span class="number">{{cart.quantity}}</span></span>
+</button>
+<div class="dropdown-panel dropdown-panel-tooltip mini-cart">
+  <div class="mini-cart-inner">
+    <div class="mini-cart-contents">
+      {{> components/mini-cart/mini-cart-contents}}
+    </div>
+  </div>
+</div>
+

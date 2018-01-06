@@ -1,0 +1,46 @@
+{{#each cart.items}}
+  <div class="mini-cart-item">
+    <div class="mini-cart-item-wrap">
+      {{#if type '==' 'GiftCertificate'}}
+        <a href="{{edit_url}}">
+          {{> svg/giftcard}}
+        </a>
+      {{else}}
+        <a href="{{url}}">
+          <div class="mini-cart-item-thumb" style="background-image: url('{{getImage image 'thumb' (cdn ../../theme_settings.default-product-image)}}')"></div>
+          <img class="sr-only" src="{{getImage image 'thumb' (cdn ../theme_settings.default-product-image)}}" alt="{{image.alt}}" />
+        </a>
+      {{/if}}
+      <div class="mini-cart-item-description">
+        <a href="{{url}}" class="mini-cart-item-title">{{name}}</a>
+        {{#if options}}
+          <div class="product-option">
+            {{#each options}}
+              <span class="option-label">{{value}}</span>
+            {{/each}}
+          </div>
+        {{/if}}
+        <span class="mini-cart-item-price">{{price.formatted}} &times; {{quantity}}</span>
+      </div>
+      <a class="mini-cart-item-remove" data-cart-item-remove data-product-id="{{id}}" href="{{remove_url}}">
+        <svg class="icon icon-close"><use xlink:href="#icon-close" /></svg>
+      </a>
+    </div>
+  </div>
+{{/each}}
+
+<footer class="mini-cart-footer">
+  {{#if cart.items.length}}
+    <span class="cart-count sr-only">{{cart.quantity}}</span>
+    <h4 class="mini-cart-footer-title">
+      <span>{{lang 'mini_cart.subtotal'}}</span>
+      <span class="mini-cart-subtotal">{{cart.sub_total.formatted}}</span>
+    </h4>
+    <div class="mini-cart-actions">
+      <a class="button button-secondary" href="{{urls.cart}}">{{lang 'mini_cart.view_cart'}}</a>
+      <a class="button" href="{{urls.checkout.single_address}}">{{lang 'mini_cart.checkout'}}</a>
+    </div>
+  {{else}}
+    <p class="mini-cart-empty">{{lang 'mini_cart.empty'}}</p>
+  {{/if}}
+</footer>

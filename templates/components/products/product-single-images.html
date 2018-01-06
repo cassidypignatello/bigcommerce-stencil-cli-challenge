@@ -1,0 +1,20 @@
+<div class="product-images-container">
+  <div class="product-slides-container">
+    <div class="product-slides-wrap">
+      {{#each images}}
+        <a class="product-image" href="{{getImage this 'zoom'}}" data-product-image>
+          <img src="{{getImage this 'product'}}" alt="{{alt}}">
+        </a>
+      {{/each}}
+    </div>
+  </div>
+  <ul class="product-images-pagination {{#if images.length '==' 1}}hidden{{/if}}">
+    {{#each images}}
+      <li class="pagination-item">
+        <a href="#" data-slide-to="{{@index}}" style="background-image: url('{{getImage this 'thumb'}}');">
+          <img class="sr-only" src="{{getImage this 'thumb'}}" alt="{{this.alt}}">
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</div>

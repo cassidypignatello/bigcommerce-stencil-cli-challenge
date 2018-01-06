@@ -1,0 +1,30 @@
+<section
+  class="carousel {{#if carousel.slides.length '===' 1}}single-slide{{/if}} {{theme_settings.home-carousel-aspect-ratio}}"
+  data-swap-frequency="{{carousel.swap_frequency}}">
+  {{#each carousel.slides}}
+    <figure class="carousel-item {{#if @first}}active{{/if}}">
+      {{#unless button_text}}
+        {{#if url}}<a href="{{url}}">{{/if}}
+      {{/unless}}
+      <div class="carousel-item-image" style="background-image: url('{{image}}');">
+        <img class="home-carousel-image" src="{{image}}" alt="{{{alt_text}}}" />
+      </div>
+      {{#unless button_text}}
+        {{#if url}}</a>{{/if}}
+      {{/unless}}
+      <figcaption class="carousel-item-info">
+        {{#if heading}}<h2 class="carousel-item-title caption-content{{#if ../../theme_settings.home-carousel-show-slide-number}} show-slide-number{{/if}}">{{{heading}}}</h2>{{/if}}
+        {{#if text}}<p class="carousel-item-caption caption-content">{{{text}}}</p>{{/if}}
+        {{#if button_text}}
+          <a class="button button-primary caption-content" href="{{url}}">{{{button_text}}}</a>
+        {{/if}}
+        <span class="carousel-navigation-item previous">
+          {{> svg/arrow-left}}
+        </span>
+        <span class="carousel-navigation-item next">
+          {{> svg/arrow-right}}
+        </span>
+      </figcaption>
+    </figure>
+  {{/each}}
+</section>

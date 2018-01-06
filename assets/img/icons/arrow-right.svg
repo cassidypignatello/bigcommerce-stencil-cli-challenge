@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="13px" height="22px" viewBox="0 0 13 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Lozel---jewellery(master)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="styleguide" sketch:type="MSArtboardGroup" transform="translate(-213.000000, -4916.000000)" fill="#FFFFFF">
+            <g id="slider-arrows" sketch:type="MSLayerGroup" transform="translate(120.000000, 4856.000000)">
+                <g id="arrow-right" transform="translate(70.000000, 41.000000)" sketch:type="MSShapeGroup">
+                    <path d="M35.1362749,28.950546 C35.7205451,29.5305902 35.7205451,30.469409 35.1364407,31.0490288 L26.0606004,40.063609 C25.7755092,40.3467649 25.395158,40.5 24.9992861,40.5 C24.6034142,40.5 24.2230629,40.3467649 23.9379649,40.0636022 C23.3540514,39.4839121 23.3540514,38.5443985 23.9378059,37.9651261 L31.6706507,30.356402 L32.032852,30.0000142 L31.6706649,29.6436119 L23.9366633,22.0331385 C23.354388,21.4548081 23.354388,20.5155807 23.9381558,19.9362951 C24.5232674,19.3546341 25.4748674,19.3546341 26.0606868,19.9362162 L35.1362749,28.950546 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

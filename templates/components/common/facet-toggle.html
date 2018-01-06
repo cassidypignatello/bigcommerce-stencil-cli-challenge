@@ -1,0 +1,11 @@
+{{!
+  @param title
+         The title of the faceted list to toggle.
+}}
+
+<h5 class="facet-list-title {{#unless start_collapsed}}is-open{{/unless}}" data-facet-toggle>
+  {{title}}
+  <span class="facet-list-toggle">
+    <svg class="icon icon-chevron-down"><use xlink:href="#icon-chevron-down" /></svg>
+  </span>
+</h5>

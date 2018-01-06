@@ -1,0 +1,12 @@
+{
+  "normalStoreUrl": "https://store-zgaqk6ez3g.mybigcommerce.com",
+  "port": 3000,
+  "clientId": "2dtznmbxl83sapogikafeoqpirev5rb",
+  "accessToken": "ie0g6spez7jic5nsmoc3np091la73ge",
+  "customLayouts": {
+    "brand": {},
+    "category": {},
+    "page": {},
+    "product": {}
+  }
+}

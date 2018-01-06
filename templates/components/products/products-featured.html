@@ -1,0 +1,23 @@
+<section class="products-featured">
+  <ul class="tabs" data-tabs>
+    <li class="tab-title"><a href="#featured-products">Featured Products</a></li>
+    <li class="tab-title"><a href="#best-sellers">Best Sellers</a></li>
+  </ul>
+  <div class="tabs-content">
+    <div class="tabs-content-panel" id="featured-products">
+      <ul class="product-grid product-carousel">
+      {{#each this}}
+        <li class="product-grid-item">
+          {{> components/products/product-grid-item
+            this
+            default_image=../theme_settings.default-product-image
+          }}
+        </li>
+      {{/each}}
+      </ul>
+    </div>
+    <div class="tabs-content-panel" id="best-sellers">
+      stuff
+    </div>
+  </div>
+</section>

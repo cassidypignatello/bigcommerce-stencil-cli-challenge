@@ -1,0 +1,32 @@
+---
+brand:
+  products:
+    limit: {{theme_settings.product-count}}
+---
+
+{{#partial "page"}}
+
+  <section class="product-listing">
+    <div class="container">
+      <header class="listing-header page-header">
+        <h1 class="section-title">{{brand.name}}</h1>
+      </header>
+
+      {{{snippet 'brand'}}}
+
+      {{#unless theme_settings.collections-sidebar-hidden}}
+        <aside class="listing-sidebar" data-brand-sidebar>
+          {{> components/brand/sidebar}}
+        </aside>
+      {{/unless}}
+
+      {{> components/products/sort}}
+      {{> components/products/listing-utils}}
+
+      <div class="product-listing-grid grid" data-brand data-product-compare>{{> components/brand/product-listing show_compare=brand.show_compare}}</div>
+    </div>
+  </section>
+
+{{/partial}}
+
+{{> layout/base}}

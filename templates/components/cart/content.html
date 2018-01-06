@@ -1,0 +1,80 @@
+<div class="cart-table-header">
+  <div class="cell cart-item-info">{{lang 'cart.product_info'}}</div>
+  <div class="cell cart-item-price">{{lang 'cart.unit_price'}}</div>
+  <div class="cell cart-item-quantity">{{lang 'cart.quantity'}}</div>
+  <div class="cell cart-item-price">{{lang 'cart.total'}}</div>
+</div>
+
+<div class="cart-table">
+  {{#each cart.items}}
+    <article class="cart-item" data-cart-item data-item-id="{{id}}">
+      <div class="cell cart-item-info">
+        <div class="cart-item-info-wrap">
+          <div class="cart-item-image">
+            {{#if type '===' 'GiftCertificate'}}
+              <div class="gift-card-image">
+                {{> svg/giftcard}}
+              </div>
+            {{else}}
+              <a href="{{url}}">
+                <img src="{{getImage image 'thumb' (cdn ../theme_settings.default-product-image)}}" alt="{{image.alt}}" />
+              </a>
+            {{/if}}
+          </div>
+          <div class="cart-item-text">
+            <div class="product-brand">{{brand.name}}</div>
+            <a class="product-name" href="{{url}}">{{name}}</a>
+            {{#if options}}
+              <div class="product-option">
+                {{#each options}}
+                  <span class="option-label">{{value}}</span>
+                {{/each}}
+              </div>
+            {{/if}}
+            {{#if configurable_fields}}
+              {{#each configurable_fields}}
+                <div class="product-option">
+                  <span class="product-option-key">{{name}}:</span>
+                  <span class="product-option-value">
+                    {{#if is_file}}
+                      <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{{value}}}</a>
+                    {{else}}
+                      {{{value}}}
+                    {{/if}}
+                  </span>
+                </div>
+              {{/each}}
+            {{/if}}
+            {{#any options configurable_fields}}
+              <a href="#" class="link" data-item-edit="{{id}}">{{lang 'cart.update_options'}}</a>
+            {{/any}}
+            <div class="cart-item-giftwrap">
+              {{> components/cart/gift-wrap-item}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cell cart-item-price">
+        <span class="cart-label">{{lang 'cart.unit_price'}}:</span>
+        <span class="{{#if price_discounted}}price-discounted{{/if}}">{{price.formatted}}</span>
+        {{#if price_discounted}}
+          <span class="cart-item-discount">{{price_discounted.formatted}}</span>
+        {{/if}}
+      </div>
+      <div class="cell cart-item-quantity">
+        {{> components/common/quantity}}
+      </div>
+      <div class="cell cart-item-price">
+        <span class="cart-label">{{lang 'cart.total'}}:</span>
+        <span class="{{#if total_discounted}}price-discounted{{/if}}">{{total.formatted}}</span>
+        {{#if total_discounted}}
+          <span class="cart-item-discount">{{total_discounted.formatted}}</span>
+        {{/if}}
+        <span class="link cart-item-update" data-cart-item-update>{{lang 'cart.update'}}</span>
+        <a class="link cart-item-remove" data-cart-item-remove href="{{remove_url}}">
+          <svg class="icon icon-close"><use xlink:href="#icon-close" /></svg>
+        </a>
+      </div>
+    </article>
+  {{/each}}
+</div>

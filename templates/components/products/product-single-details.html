@@ -1,0 +1,148 @@
+<section class="product-details product-block section {{#unless quick_view}}product-single{{/unless}}" data-product-container data-product-title="{{product.title}}" data-product-id="{{product.id}}">
+
+  <div class="container">
+    <div class="product-details-column {{#if product.images}}has-images{{/if}}">
+      {{> components/products/product-single-images images=product.images}}
+    </div>
+
+    <div class="product-details-column {{#if product.images}}has-images{{/if}}">
+      {{#if product.brand}}
+        <a class="product-brand" href="{{product.brand.url}}">{{product.brand.name}}</a>
+      {{/if}}
+
+      {{#if quick_view}}
+        <h1 class="product-title"><a href="{{product.url}}">{{this.product.title}}</a></h1>
+      {{else}}
+        <h1 class="product-title">{{this.product.title}}</h1>
+      {{/if}}
+
+      <div class="product-item-price">
+        {{#if product.price}}
+          {{> components/products/price
+            price=product.price
+            show_savings=true
+            save_block=true
+            schema_org=true
+          }}
+        {{/if}}
+
+        {{#if product.call_for_price}}
+          <p>{{product.call_for_price}}</p>
+        {{/if}}
+      </div>
+
+      <div class="product-rating-block">
+        {{#if settings.show_product_rating}}
+          <div class="product-item-rating">
+            {{> components/products/ratings rating=this.product.rating}}
+            <span class="total-reviews reviews-jumplink" data-scroll="#reviews">
+              <a class="product-reviews-link" href="{{#if quick_view}}{{product.url}}{{/if}}#reviews">{{lang 'product.reviews.title' numReviews=product.num_reviews}}</a>
+            </span>
+          </div>
+
+          {{{snippet 'product_rating'}}}
+        {{/if}}
+      </div>
+
+      {{#if product.release_date }}
+        <p class="message neutral">{{product.release_date}}</p>
+      {{/if}}
+
+      <form method="post" id="product-add-cart" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add data-product-options-count="{{product.options.length}}">
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="product_id" value="{{product.id}}" data-product-id/>
+
+        {{#if product.customizations.length}}
+          <div class="product-options-container">
+            {{#each product.customizations}}
+              {{{dynamicComponent 'core/forms/customizations'}}}
+            {{/each}}
+          </div>
+        {{/if}}
+
+        {{#if product.options.length}}
+          <div class="product-options-container" data-product-option-change>
+            {{#each product.options}}
+              {{{dynamicComponent 'core/forms/options'}}}
+            {{/each}}
+          </div>
+        {{/if}}
+
+        {{#if product.event_date}}
+          {{> core/products/event}}
+        {{/if}}
+
+        {{> components/products/bulk-pricing}}
+
+        <div class="product-stock {{#unless product.show_quantity_input}}default-layout{{/unless}}">
+          <span class="{{#unless product.stock_level}}product-details-hidden{{/unless}}" data-product-stock>{{lang 'product.current_stock'}}</span>
+          <span class="{{#unless product.stock_level}}product-details-hidden{{/unless}}" data-product-stock data-product-stock-level>{{#if product.stock_level}}{{product.stock_level}}{{else}}0{{/if}}</span>
+
+          {{#if product.out_of_stock}}
+            <span class="stock-message">
+            {{#if product.out_of_stock_message}}
+              {{product.out_of_stock_message}}
+            {{else}}
+              {{lang 'product.sold_out'}}
+            {{/if}}
+            <span/>
+          {{/if}}
+        </div>
+
+        {{#if product.show_quantity_input}}
+          <div class="product-quantity-container">
+            <div class="form-field">
+              <label class="form-label">
+                <span class="form-label-text product-option-title">{{ lang 'product.quantity'}}</span>
+                {{> components/common/quantity product}}
+              </label>
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if product.can_purchase}}
+          <button type="submit" class="button button-primary button-wide add-to-cart button-progress spinner" data-button-purchase>
+            <span class="button-text">
+              {{#if product.pre_order}}
+                {{lang 'product.pre_order'}}
+              {{else}}
+                {{lang 'product.add_to_cart'}}
+              {{/if}}
+            </span>
+          </button>
+        {{else}}
+          {{#if product.out_of_stock}}
+            <div class="button button-primary button-wide add-to-cart button-disabled">
+              {{lang 'product.sold_out'}}
+            </div>
+          {{/if}}
+        {{/if}}
+      </form>
+
+      <div class="product-actions">
+        {{#if settings.show_wishlist}}
+          <form method="post" class="wishlist-form" action="{{product.add_to_wishlist_url}}" {{#if customer}}data-customer{{/if}}>
+            <button type="submit" class="button button-secondary button-wide add-to-wishlist button-progress spinner">
+              <span class="button-text">{{lang 'product.add_to_wishlist'}}</span>
+            </button>
+          </form>
+        {{/if}}
+
+        <div class="product-message-area" data-product-message></div>
+
+        {{#if quick_view}}
+          <a class="quick-shop-details-lower link" href="{{this.product.url}}">{{lang 'product.view_full_details'}}</a>
+        {{/if}}
+      </div>
+
+      {{#any settings.add_this.buttons service='facebook_like'}}
+        <div class="share-block">
+          <span class="form-label-text share-title">{{lang 'product.share'}}</span>
+          {{> components/common/share-buttons share_buttons=settings.add_this url=product.url image=(getImage product.main_image 'thumb') title=product.title}}
+        </div>
+      {{/any}}
+
+      {{{snippet 'product_details'}}}
+    </div>
+  </div>
+</section>

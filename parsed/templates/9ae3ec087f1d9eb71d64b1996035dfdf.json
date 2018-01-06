@@ -1,0 +1,1 @@
+{"components/common/facet-toggle":"{{!\n  @param title\n         The title of the faceted list to toggle.\n}}\n\n<h5 class=\"facet-list-title {{#unless start_collapsed}}is-open{{/unless}}\" data-facet-toggle>\n  {{title}}\n  <span class=\"facet-list-toggle\">\n    <svg class=\"icon icon-chevron-down\"><use xlink:href=\"#icon-chevron-down\" /></svg>\n  </span>\n</h5>\n"}

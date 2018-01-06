@@ -1,0 +1,21 @@
+{{#if category.products}}
+  <div class="listing-wrapper">
+    <form class="form {{#if category.show_compare}}compare-enabled{{/if}}" id="form-compare" action="/compare" method='POST' data-product-compare>
+      {{#each category.products}}
+        {{> components/products/product-list-item
+          show_rating=../settings.show_product_rating
+          show_compare=../category.show_compare
+          default_image=../theme_settings.default-product-image
+          as_low_as=../theme_settings.price_as_low_as
+          quick_shop=../theme_settings.quick_shop
+        }}
+      {{/each}}
+    </form>
+  </div>
+
+  {{> components/common/pagination pagination.category}}
+{{else}}
+  <h3 class="listing-no-products">
+    {{lang 'category.empty'}}
+  </h3>
+{{/if}}

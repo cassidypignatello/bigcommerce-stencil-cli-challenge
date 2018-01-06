@@ -1,0 +1,29 @@
+<div class="quick-search-inner">
+  <div class="quick-search-results-text">
+    {{lang 'search.quick_count' count=pagination.product_results.total search_query=forms.search.query}}
+  </div>
+  {{#if product_results.products}}
+    <ul class="quick-search-list">
+      {{#each product_results.products}}
+        <li class="quick-search-item">
+          <a class="quick-search-item-link" href="{{url}}">
+          <div class="quick-search-item-image" style="background-image: url('{{getImage image 'thumb' (cdn ../theme_settings.default-product-image)}}');">
+              <img class="sr-only" src="{{getImage image 'thumb' (cdn ../theme_settings.default-product-image)}}" alt="{{image.alt}}">
+            </div>
+            <div class="quick-search-item-info">
+              <div class="quick-search-item-title" href="{{url}}">{{name}}</div>
+              <div class="quick-search-item-brand">{{brand.name}}</div>
+            </div>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+  {{#if pagination.product_results.next}}
+    <div class="quick-search-button-wrapper">
+      <a class="button button-primary" href="{{forms.search.product_url}}">
+        {{lang 'search.view_all'}}
+      </a>
+    </div>
+  {{/if}}
+</div>

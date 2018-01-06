@@ -1,0 +1,53 @@
+<div class="navigation-mobile {{#if theme_settings.flyout_menu}}flyout-menu{{/if}}">
+  <section class="utils customer-utils">
+    {{#if currency_selector.currencies.length ">" 1}}
+      <div class="util">{{> components/header/currency-selector}}</div>
+    {{/if}}
+    {{#if settings.account_creation_enabled}}
+      <div class="util">{{> components/header/account-button}}</div>
+    {{/if}}
+    <div class="util">
+      <a class="cart-link" href="{{urls.cart}}">
+        <svg class="icon icon-cart"><use xlink:href="#icon-cart" /></svg>
+        <span class="icon-cart-count {{#if cart.quantity '>' 0}}show{{/if}}"><span class="number">{{cart.quantity}}</span></span>
+      </a>
+    </div>
+    <div class="util dropdown dropdown-search">
+      <button class="button-search-toggle dropdown-toggle">
+        <svg class="icon icon-search"><use xlink:href="#icon-search" /></svg>
+      </button>
+      <div class="dropdown-panel dropdown-panel-tooltip">
+        {{> components/common/search-form}}
+        <div class="quick-search-mobile" data-quick-search></div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="navigation">
+    <ul>
+      {{#if theme_settings.global-show-home-in-nav}}
+        <li><a class="nav-page top-level-nav-link" href="{{urls.home}}">{{lang 'header.home_nav_item'}}</a></li>
+      {{/if}}
+      {{#if theme_settings.global-show-categories-in-nav}}
+        {{#if ../theme_settings.categories-display-type '===' 'categories-main-nav'}}
+          {{> components/common/main-navigation-categories}}
+        {{else}}
+          <li class="dropdown">
+            <a class="nav-page dropdown-toggle top-level-nav-link" href="#">
+              {{lang 'header.shop_nav_item'}}
+              <svg class="icon icon-arrow-down"><use xlink:href="#icon-arrow-down" /></svg>
+            </a>
+            <div class="dropdown-panel">
+              <ul>
+                {{> components/common/navigation-mega nav_items=categories}}
+              </ul>
+            </div>
+          </li>
+        {{/if}}
+      {{/if}}
+      {{#if theme_settings.global-show-pages-in-nav}}
+        {{> components/common/main-navigation-pages}}
+      {{/if}}
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,15 @@
+{{#if customer}}
+  <div class="dropdown dropdown-account">
+    <a class="top-bar-button dropdown-toggle" href="#">
+      <svg class="icon icon-account"><use xlink:href="#icon-account" /></svg>
+    </a>
+    <div class="dropdown-panel dropdown-panel-tooltip">
+      <a class="account-link" href="{{urls.account.index}}">account</a>
+      <a class="account-link" href="{{urls.auth.logout}}">logout</a>
+    </div>
+  </div>
+{{else}}
+  <a class="top-bar-button" href="{{urls.auth.login}}">
+    <svg class="icon icon-account"><use xlink:href="#icon-account" /></svg>
+  </a>
+{{/if}}

@@ -1,0 +1,1 @@
+{"components/common/banner-top":"{{#if banners.top}}\n  <div class=\"banners banners-top\">\n    {{#each banners.top}}\n      <div class=\"banner rte\">\n        {{{this}}}\n      </div>\n    {{/each}}\n  </div>\n{{/if}}\n"}

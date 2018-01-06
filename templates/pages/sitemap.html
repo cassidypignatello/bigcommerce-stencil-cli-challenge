@@ -1,0 +1,24 @@
+{{#partial "page"}}
+
+  <header class="page-header">
+    <div class="section-title">
+      <h1 class="page-title">{{lang 'sitemap.title'}}</h1>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container container-small">
+      <article class="page-content cms-page">
+        {{#each sitemap}}
+          <div class="sitemap-group">
+            <h2 class="sitemap-title">{{title}}</h2>
+            {{> components/sitemap/group items=body}}
+          </div>
+        {{/each}}
+      </article>
+    </div>
+  </section>
+
+{{/partial}}
+
+{{> layout/base}}

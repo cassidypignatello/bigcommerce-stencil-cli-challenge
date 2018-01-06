@@ -1,0 +1,1 @@
+{"components/products/ratings":"{{#for 1 5}}\n  <svg class=\"icon icon-star {{#if ../this.rating '>=' $index}}full{{/if}}\"><use xlink:href=\"#icon-star\" /></svg>\n{{/for}}\n"}

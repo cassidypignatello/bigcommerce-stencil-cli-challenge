@@ -1,0 +1,39 @@
+---
+brands:
+  limit: {{theme_settings.brand-count}}
+---
+
+{{#partial "page"}}
+
+  <header class="page-header">
+    <div class="section-title">
+      {{> components/common/breadcrumbs breadcrumbs}}
+      <h1 class="page-title">{{lang 'brand.label'}}</h1>
+    </div>
+  </header>
+
+  <section class="product-listing section">
+    <div class="container">
+      <ul class="brand-items-list">
+        {{#each brands}}
+          <li class="brand-item {{#unless image}}no-brand-image{{/unless}}">
+            {{#if image}}
+              <figure class="brand-item-image-container">
+                <a href="{{url}}">
+                  <img class="brant-item-image brand-name" src="{{getImage image 'thumb'}}" alt="{{name}}">
+                </a>
+              </figure>
+            {{else}}
+              <a class="brand-item-title" href="{{url}}"><span class="brand-name">{{name}}</span></a>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+
+      {{> components/common/pagination pagination.brands}}
+    </div>
+  </section>
+
+{{/partial}}
+
+{{> layout/base}}

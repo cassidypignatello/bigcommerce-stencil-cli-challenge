@@ -1,0 +1,27 @@
+<ul class="facet-list-items {{#if selected}}is-open{{/if}} {{#unless start_collapsed}}is-open{{/unless}}" data-facet-filter-wrapper>
+  <li class="product-item-rating" data-facet-item>
+    {{#for 1 4 items}}
+
+      {{#each this}}
+        {{#if param_value '==' ../$index}}
+          <a class="product-item-rating-facet {{#if ../selected '==' true}}full{{/if}}" href="{{url}}" rel="nofollow" data-faceted-search-facet data-rating="{{lang 'faceted_search.stars' num=param_value}}">
+        {{/if}}
+      {{/each}}
+
+      <svg class="icon icon-star "><use xlink:href="#icon-star" /></svg>
+
+      {{#each this}}
+        {{#if param_value '==' ../$index}}
+          </a>
+        {{/if}}
+      {{/each}}
+
+    {{/for}}
+
+    {{#each items}}
+      {{#if selected '==' true}}
+        <span class="selected-rating">{{lang 'faceted_search.stars' num=param_value}}</span>
+      {{/if}}
+    {{/each}}
+  </li>
+</ul>

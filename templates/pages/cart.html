@@ -1,0 +1,28 @@
+{{#partial "page"}}
+  <header class="cart-header page-header {{#unless cart.items}}cart-empty{{/unless}}">
+    <h1 class="cart-title section-title">
+      {{#if cart.items}}{{lang 'cart.title'}}{{else}}{{lang 'cart.empty'}}{{/if}}
+    </h1>
+  </header>
+
+  <section class="product-listing section">
+    <div class="container">
+      {{#if cart.items}}
+        <div data-cart-content>
+          {{> components/cart/content}}
+        </div>
+
+        <div class="cart-totals" data-cart-totals>
+          {{> components/cart/totals}}
+        </div>
+      {{else}}
+        <div class="cart-empty">
+          <a href="{{urls.home}}" class="button">{{lang 'cart.keep_shopping'}}</a>
+        </div>
+      {{/if}}
+
+      {{{snippet 'cart'}}}
+    </div>
+  </section>
+{{/partial}}
+{{> layout/base}}

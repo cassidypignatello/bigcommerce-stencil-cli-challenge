@@ -1,0 +1,44 @@
+{{#each product.reviews.messages}}
+  {{#if error}}
+    {{> core/alerts/alert-error message=error dismissable=true}}
+  {{/if}}
+  {{#if success}}
+    {{> core/alerts/alert-success message=success dismissable=true}}
+  {{/if}}
+{{/each}}
+
+{{#if cart.status_messages}}
+  {{#each cart.status_messages}}
+    {{#if type '==' 0}}
+      {{> core/alerts/alert-error message=message dismissable=true}}
+    {{/if}}
+
+    {{#if type '==' 1}}
+      {{> core/alerts/alert-success message=message dismissable=true}}
+    {{/if}}
+
+    {{#if type '==' 3}}
+      {{> core/alerts/alert-error message=message dismissable=true}}
+    {{/if}}
+  {{/each}}
+{{/if}}
+
+{{#if shipping_messages}}
+  {{#each shipping_messages}}
+    {{> core/alerts/alert-info message=message dismissable=true}}
+  {{/each}}
+{{/if}}
+
+{{#if cart.status_messages}}
+  {{#each cart.status_messages}}
+    {{#if type '==' 2}}
+      {{> core/alerts/alert-info message=message dismissable=true}}
+    {{/if}}
+  {{/each}}
+{{/if}}
+
+{{#if product.shipping_messages}}
+  {{#each product.shipping_messages}}
+    {{> core/alerts/alert-info message=message dismissable=true}}
+  {{/each}}
+{{/if}}

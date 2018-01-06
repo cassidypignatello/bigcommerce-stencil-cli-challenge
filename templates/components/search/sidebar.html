@@ -1,0 +1,58 @@
+{{#if product_results.products}}
+  {{#if product_results.faceted_search_enabled}}
+    <span class="link faceted-search-toggle" data-faceted-search-toggle data-show-text="{{lang 'faceted_search.show'}}" data-hide-text="{{lang 'faceted_search.hide'}}">
+    </span>
+    <div class="faceted-search" data-faceted-search>
+      {{#each product_results.facets}}
+        {{#if visible}}
+          {{#if items.length}}
+            <div class="facet-list {{display}}" data-facet-filter>
+
+              {{> components/common/facet-toggle title=title}}
+
+              {{{dynamicComponent 'components/faceted-search/facets'}}}
+
+              {{#if remove_url}}
+                <a class="link facet-remove" href="{{remove_url}}" data-faceted-search-facet data-facet-remove>{{lang 'faceted_search.clear'}}</a>
+              {{/if}}
+            </div>
+          {{/if}}
+          {{#compare facet 'price'}}
+            <div class="facet-list {{display}}" data-facet-filter>
+
+              {{> components/common/facet-toggle title=title}}
+
+              {{{dynamicComponent 'components/faceted-search/facets'}}}
+
+              {{#if remove_url}}
+                <a class="link facet-remove" href="{{remove_url}}" data-faceted-search-facet data-facet-remove>{{lang 'faceted_search.clear'}}</a>
+              {{/if}}
+            </div>
+          {{/compare}}
+        {{/if}}
+      {{/each}}
+    </div>
+  {{/if}}
+{{else}}
+  {{#if categories}}
+    <div class="category-nav">
+      <h5 class="category-nav-heading">{{lang 'category.label'}}</h5>
+      <ul class="category-nav-list">
+        {{#each categories}}
+          <li class="category-nav-list-item">
+            <a href="{{url}}">{{name}}</a>
+            {{#if children}}
+              <ul class="category-nav-list">
+                {{#each children}}
+                  <li class="category-nav-list-item">
+                    <a href="{{url}}">{{name}}</a>
+                  </li>
+                {{/each}}
+              </ul>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+{{/if}}

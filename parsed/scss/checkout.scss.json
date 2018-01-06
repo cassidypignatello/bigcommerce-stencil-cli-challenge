@@ -1,0 +1,1 @@
+{"checkout.scss":"/*! Theme: Merchant v1.15.0 */\n.header {\n  background-color: stencilColor(\"color-topbar-background\");\n}\n\n.header-logo {\n  padding: 10px 0;\n  text-align: center;\n\n  img {\n    max-height: 3.75rem;\n  }\n}\n"}

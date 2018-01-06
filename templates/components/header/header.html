@@ -1,0 +1,72 @@
+<header class="site-header" role="banner">
+  <div class="site-alerts" data-alerts>
+    {{> components/header/alert-messages}}
+  </div>
+  <section class="top-bar logo-align-{{theme_settings.header-logo-alignment}}">
+    <div class="container">
+
+      <a href="{{urls.compare}}" data-compare-link="{{urls.compare}}" class="mobile-compare-link button-compare-toggle">
+        {{lang 'compare.compare_submit'}}
+        <span class="compare-items-count"></span>
+      </a>
+
+      {{> components/header/header-top-bar alignment=theme_settings.header-logo-alignment}}
+    </div>
+  </section>
+
+  <section class="main-nav-bar">
+    <div class="container">
+      <nav class="navigation">
+        <ul>
+          {{#if theme_settings.global-show-home-in-nav}}
+            <li class="main-nav-item"><a class="top-level-nav-link" href="{{urls.home}}">{{lang 'header.home_nav_item'}}</a></li>
+          {{/if}}
+          {{#if theme_settings.global-show-categories-in-nav}}
+            {{#if ../theme_settings.categories-display-type '===' 'categories-main-nav'}}
+              {{> components/common/main-navigation-categories}}
+            {{else}}
+              <li class="main-nav-item dropdown mega-nav">
+                <a class="dropdown-toggle top-level-nav-link" href="#">
+                  {{lang 'header.shop_nav_item'}}
+                  <svg class="icon icon-arrow-down"><use xlink:href="#icon-arrow-down" /></svg>
+                </a>
+                <div class="dropdown-panel mega-nav-panel {{#unless theme_settings.meganav-show-category-images}}no-images{{/unless}}{{#if theme_settings.meganav-use-variant}} variant{{/if}}">
+                  {{#if ../theme_settings.categories-display-type '===' 'meganav-use-variant'}}
+                    {{> components/common/mega-nav-variant nav_items=categories}}
+                  {{else}}
+                    <div class="container  {{#if theme_settings.meganav-use-fullwidth}}full-width{{/if}}">
+                      <ul class="mega-nav-list">
+                        {{> components/common/navigation-mega nav_items=categories}}
+                      </ul>
+                      {{#if theme_settings.meganav-show-category-images}}
+                        <div class="category-image-container">
+                          {{#each categories}}
+                            {{#if image}}
+                              {{> components/header/category-image}}
+                            {{/if}}
+                            {{#each children}}
+                              {{#if image}}
+                                {{> components/header/category-image}}
+                              {{/if}}
+                            {{/each}}
+                          {{/each}}
+                        </div>
+                      {{/if}}
+                    </div>
+                  {{/if}}
+                </div>
+              </li>
+            {{/if}}
+          {{/if}}
+          {{#if theme_settings.global-show-pages-in-nav}}
+            {{> components/common/main-navigation-pages}}
+          {{/if}}
+        </ul>
+      </nav>
+      <div class="customer-utils">
+        {{> components/header/customer-utils}}
+      </div>
+    </div>
+  </section>
+
+</header>

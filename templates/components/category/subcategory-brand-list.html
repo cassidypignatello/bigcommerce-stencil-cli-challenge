@@ -1,0 +1,21 @@
+{{!
+    @param list
+           Brands / Categories
+
+    @param title
+           List title
+
+}}
+
+{{#if list}}
+  <div class="category-nav facet-list" data-facet-filter>
+    {{> components/common/facet-toggle title=title}}
+    <ul class="category-nav-list facet-list-items is-open" data-facet-filter-wrapper>
+      {{#each list}}
+        <li class="facet-item">
+          <a href="{{url}}">{{name}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}

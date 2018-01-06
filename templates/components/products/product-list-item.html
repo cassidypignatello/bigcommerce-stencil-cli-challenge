@@ -1,0 +1,63 @@
+<article class="product-list-item product-block" data-product-title="{{name}}" data-product-id="{{id}}">
+  <div class="product-thumb-wrapper">
+    <figure class="product-item-thumbnail">
+      {{#if price.saved}}
+        <div class="product-badge sale"><span class="message">{{lang 'product.sale'}}</span></div>
+      {{/if}}
+      {{#if out_of_stock_message}}
+        <div class="product-badge sold-out"><span class="message">{{out_of_stock_message}}</span></div>
+      {{/if}}
+      <a class="product-item-thumbnail-image" href="{{url}}" data-product-href="{{url}}" style="background-image: url('{{getImage image 'thumb' (cdn default_image)}}')">
+        <img class="sr-only" src="{{getImage image 'thumb' (cdn default_image)}}" alt="{{image.alt}}" />
+      </a>
+    </figure>
+  </div>
+
+  <div class="product-item-details">
+    {{#if show_rating}}
+      <p class="product-item-rating">
+        {{> components/products/ratings rating=rating}}
+      </p>
+    {{/if}}
+
+    {{#if brand.name}}
+      <div class="product-item-brand">{{brand.name}}</div>
+    {{/if}}
+    <h1 class="product-item-title">
+      <a href="{{{url}}}" alt="{{name}}">{{name}}</a>
+    </h1>
+
+    <div class="product-item-price" data-product-price="{{price.without_tax.formatted}}">
+      {{> components/products/price
+        price=price
+        as_low_as=as_low_as
+      }}
+    </div>
+
+    <div class="product-description">
+      {{{summary}}}
+    </div>
+
+    <div class="product-item-actions">
+      {{#if show_compare}}
+        <label class="button button-short button-wide product-item-compare override-dropdown" for="compare-{{id}}">
+          {{> components/common/compare-checkbox}}
+          <span>
+            <svg class="icon icon-check-mark"><use xlink:href="#icon-check-mark" /></svg>
+            {{lang "product.compare"}}
+          </span>
+        </label>
+      {{/if}}
+
+      {{#if quick_shop}}
+        <button class="button button-secondary button-short button-wide" data-quick-shop data-product-id="{{id}}">
+          {{lang 'product.quick_view'}}
+        </button>
+      {{else}}
+        <div class="button button-secondary inverted button-short" data-product-href="{{url}}">
+          {{lang 'product.view_product'}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</article>

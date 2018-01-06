@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+  <head>
+    <title>{{ head.title }}</title>
+    {{{ head.meta_tags }}}
+    {{{ head.config }}}
+    {{#block "head"}} {{/block}}
+    <link href="{{ head.favicon }}" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="{{cdn '/assets/js/modernizr.js'}}"></script>
+
+    {{{stylesheet '/assets/css/theme.css'}}}
+    {{ getFontsCollection }}
+
+    {{{head.scripts}}}
+    {{{head.rsslinks}}}
+
+    {{inject 'themeImageSizes' theme_settings._images}}
+    {{> components/global-injects}}
+    {{{snippet 'html_head'}}}
+
+    {{> core/structured-data/website}}
+  </head>
+
+  <body class="{{page_type}} {{> components/common/body-classes}}" itemscope itemtype="http://schema.org/WebPage">
+
+    {{#if page_type '===' 'product'}}
+      {{> components/common/facebook-like}}
+    {{else if page_type '===' 'blog_post'}}
+      {{> components/common/facebook-like}}
+    {{/if}}
+
+    <div class="icons-svg-sprite">{{> components/common/icons/icon-defs}}</div>
+    <div class="site-wrapper {{#if theme_settings.flyout_menu}}flyout-menu{{/if}}">
+      {{{snippet 'header'}}}
+      {{> components/header/header}}
+
+      {{> components/common/banner-top}}
+
+      <main class="main-content">
+        {{#block "page"}}{{/block}}
+      </main>
+
+      {{> components/footer/footer }}
+
+      {{> components/header/navigation-mobile}}
+    </div> <!-- /site-wrapper -->
+
+    {{> core/structured-data/breadcrumbs}}
+
+    <script src="{{cdn '/assets/js/bundle.js'}}"></script>
+    <script>
+      window.stencilBootstrap("{{template_file}}", {{jsContext}}).load();
+    </script>
+
+    {{{footer.scripts}}}
+    {{{snippet 'footer'}}}
+  </body>
+</html>

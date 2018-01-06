@@ -1,0 +1,91 @@
+<div>
+  {{#if price}}
+    {{#or has_options product.options.length}}
+      {{#if price.with_tax}}
+        <div
+          class="product-price-line{{#if price.without_tax}} price-second-line{{/if}}"
+          data-product-price-wrapper="with-tax">
+
+          {{#if page_type '!==' 'product'}}
+            {{#if as_low_as}}
+              <span class="as-low-as-pricing">{{lang 'product.as_low_as_price_message'}}</span>
+            {{/if}}
+          {{/if}}
+
+          {{#if price.saved}}
+            <span class="price-rrp highlight">{{price.rrp_with_tax.formatted}}</span>
+          {{/if}}
+
+          <span class="price-value"> {{price.with_tax.formatted}}</span>
+
+          {{#if price.without_tax}}
+            <span class="tax-label"> {{lang 'product.including_tax'}}</span>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if price.without_tax}}
+        <div class="product-price-line" data-product-price-wrapper="without-tax">
+
+          {{#if page_type '!==' 'product'}}
+            {{#if as_low_as}}
+              <span class="as-low-as-pricing">{{lang 'product.as_low_as_price_message'}}</span>
+            {{/if}}
+          {{/if}}
+
+          {{#if price.saved}}
+            <span class="price-rrp {{#unless price.with_tax}}highlight{{/unless}}">{{price.rrp_without_tax.formatted}}</span>
+          {{/if}}
+
+          <span class="price-value"> {{price.without_tax.formatted}}</span>
+        </div>
+      {{/if}}
+
+      {{#if show_savings}}
+        {{#if price.saved}}
+          <div class="price-you-save" data-product-price-saved>
+            {{lang 'product.you_save'}} {{price.saved.formatted}}
+          </div>
+        {{/if}}
+      {{/if}}
+    {{else}}
+      {{#if price.without_tax}}
+        <div class="product-price-line" data-product-price-wrapper="without-tax">
+
+          {{#if price.saved}}
+            <span class="price-rrp {{#unless price.with_tax}}highlight{{/unless}}">{{price.rrp_without_tax.formatted}}</span>
+          {{/if}}
+
+          <span class="price-value"> {{price.without_tax.formatted}}</span>
+
+          {{#if price.with_tax}}
+            <span class="tax-label"> {{lang 'product.excluding_tax'}}</span>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if price.with_tax}}
+        <div class="product-price-line{{#if price.without_tax}} price-second-line{{/if}}" data-product-price-wrapper="with-tax">
+
+          {{#if price.saved}}
+            <span class="price-rrp {{#unless price.without_tax}}highlight{{/unless}}">{{price.rrp_with_tax.formatted}}</span>
+          {{/if}}
+
+          <span class="price-value">{{price.with_tax.formatted}}</span>
+
+          {{#if price.without_tax}}
+            <span class="tax-label"> {{lang 'product.including_tax'}}</span>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if show_savings}}
+        {{#if price.saved}}
+          <div class="price-you-save" data-product-price-saved>
+            {{lang 'product.you_save'}} {{price.saved.formatted}}
+          </div>
+        {{/if}}
+      {{/if}}
+    {{/or}}
+  {{/if}}
+</div>

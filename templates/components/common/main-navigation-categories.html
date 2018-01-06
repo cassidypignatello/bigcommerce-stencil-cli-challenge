@@ -1,0 +1,27 @@
+{{#each categories}}
+  <li class="main-nav-item nav-page {{#if children}}dropdown{{/if}}">
+    <a class="{{#if children}}dropdown-toggle{{/if}} top-level-nav-link items" href="{{url}}">
+      <span>{{name}}</span>
+      {{#if children}}
+        <svg class="icon icon-arrow-down"><use xlink:href="#icon-arrow-down" /></svg>
+      {{/if}}
+    </a>
+    {{#if children}}
+      <ul class="dropdown-panel">
+        <li class="parent-all"><a href="{{url}}">{{lang 'common.navigation_all' name=name}}</a></li>
+        {{#each children}}
+          <li>
+            <a href="{{url}}">{{name}}</a>
+            {{#if children}}
+              <ul class="submenu-dropdown-panel">
+                {{#each children}}
+                  <li><a href="{{url}}">{{name}}</a></li>
+                {{/each}}
+              </ul>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </li>
+{{/each}}

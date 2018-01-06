@@ -1,0 +1,22 @@
+<h5>{{lang 'cart.shipping_calculator.methods'}}</h5>
+<form class="form">
+  <ul class="shipping-quote-list">
+    {{#if quotes.shipping_methods}}
+      {{#each quotes.shipping_methods}}
+        {{> components/cart/shipping-quote}}
+      {{/each}}
+    {{/if}}
+
+    {{#if quotes.ups_shipping_methods}}
+      {{#each quotes.ups_shipping_methods}}
+        {{> components/cart/shipping-quote provider_name=description}}
+      {{/each}}
+    {{/if}}
+  </ul>
+  <div class="form-actions">
+    <button class="button button-wide button-progress spinner button-apply-shipping" type="submit">
+      <span class="button-text">{{lang 'cart.shipping_calculator.apply'}}</span>
+    </button>
+    <button class="button button-secondary button-wide" type="button" data-cancel-shipping>{{lang 'common.form_cancel'}}</button>
+  </div>
+</form>

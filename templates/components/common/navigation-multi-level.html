@@ -1,0 +1,46 @@
+{{!
+  @param nav_items
+         > either "pages" or "categories", passed from parent template
+}}
+
+<nav class="navigation">
+  <ul>
+    {{#each nav_items}}
+      <li class="{{#if children}}dropdown{{/if}}">
+        <a class="top-level-nav-link" href="{{url}}">
+          {{name}}
+          {{#if children}}
+            <span class="dropdown-toggle">
+              <i class="icon icon-arrow-down"></i>
+            </span>
+          {{/if}}
+        </a>
+        {{#if children}}
+          <ul class="dropdown-panel">
+            {{! only categories have IDs}}
+            {{#if this.id}}
+              <li><a href="{{url}}">{{lang 'common.navigation_all' name=name}}</a></li>
+            {{/if}}
+            {{#each children}}
+              <li>
+                <a href="{{url}}">{{name}}</a>
+                {{#if children}}
+                  <ul>
+                    {{#each children}}
+                      <li><a href="{{url}}">{{name}}</a></li>
+                    {{/each}}
+                  </ul>
+                {{/if}}
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      </li>
+    {{/each}}
+    {{#if settings.gift_certificates_enabled}}
+      {{#if nav_items '==' pages}}
+        <li><a href="{{urls.gift_certificate.purchase}}">{{lang 'header.gift_certificate_cta'}}</a></li>
+      {{/if}}
+    {{/if}}
+  </ul>
+</nav>

@@ -1,0 +1,71 @@
+---
+product_results:
+    limit: {{theme_settings.product-count}}
+---
+
+{{#partial "page"}}
+
+  <header class="search-header page-header">
+    <h1 class="search-title section-title">
+      <span class="search-query-prefix">{{lang 'search.title' num=result_count}}</span>
+      <span class="search-query">{{forms.search.query}}</span>
+    </h1>
+    <div class="container">
+      {{#if theme_settings.show-on-page-seach-form}}
+        {{> components/common/search-form}}
+      {{/if}}
+      <div data-tabs>
+        <span class="search-tab-title">
+          <a href="#product-results">
+            {{lang 'search.product_results_title'}}
+            <span class="results-count">({{pagination.product_results.total}})</span>
+          </a>
+        </span>
+
+        &#47;
+
+        <span class="search-tab-title">
+          <a href="#content-results">
+            {{lang 'search.content_results_title'}}
+            <span class="results-count">({{pagination.content_results.total}})</span>
+          </a>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <section class="search-results">
+    <div class="container">
+
+      {{{snippet 'search'}}}
+
+      <div class="tabs-content">
+        <div class="tab-content-panel product-results" id="product-results">
+          {{#unless theme_settings.collections-sidebar-hidden}}
+            <aside class="listing-sidebar" data-search-sidebar>
+              {{> components/search/sidebar faceted_search_enabled=product_results.faceted_search_enabled facets=product_results.facets}}
+            </aside>
+          {{/unless}}
+
+          <div class="product-listing-grid" data-search data-product-compare>
+            {{> components/search/product-listing show_compare=product_results.show_compare}}
+          </div>
+        </div>
+        <div class="tab-content-panel content-results" id="content-results">
+          {{#if content_results}}
+            {{#each content_results}}
+              {{> components/search/content-item}}
+            {{/each}}
+            {{> components/common/pagination pagination.content_results}}
+          {{else}}
+            <h4>{{lang 'search.empty_content'}}</h4>
+          {{/if}}
+        </div>
+        <svg class="icon icon-spinner"><use xlink:href="#icon-spinner" /></svg>
+      </div>
+    </div>
+  </section>
+
+{{/partial}}
+
+{{> layout/base}}

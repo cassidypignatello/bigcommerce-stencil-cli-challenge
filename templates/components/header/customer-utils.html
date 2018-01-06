@@ -1,0 +1,21 @@
+{{> components/header/compare-list}}
+
+{{> components/header/currency-selector}}
+
+{{#if settings.account_creation_enabled}}
+  <div class="customer-links customer-util">
+    {{> components/header/account-button}}
+  </div>
+{{/if}}
+
+{{#if settings.show_wishlist}}
+  {{#if customer}}
+    <a class="top-bar-button button-wishlist customer-util" href="{{urls.account.wishlists.all}}">
+      <svg class="icon icon-wishlist"><use xlink:href="#icon-wishlist" /></svg>
+    </a>
+  {{/if}}
+{{/if}}
+
+<div class="mini-cart-wrap dropdown customer-util logo-align-center">
+  {{> components/mini-cart/mini-cart }}
+</div>
